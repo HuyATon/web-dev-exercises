@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            font-size: 30px;
+            margin: 0;
+        }
+        .container {
+            display: grid;
+            height: 100vh;
+            grid-template-columns: 1fr;
+            grid-template-rows: 2fr 6fr 2fr;
+        }
+        .header {
+            background: lightblue;
+        }
+        .footer {
+            background: coral;
+        }
+        .content {
+            background: lightgreen;
+        }
+
+        .side {
+            background: orange;
+        }
+
+        .sub-container {
+            display: grid;
+            grid-template-columns: 3fr 7fr;
+        }
+
+        @media (max-width: 600px) {
+            .sub-container {
+                grid-template-columns: 1fr;
+                grid-template-rows: 1fr 1fr;
+            }
+        }
+
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            HEADER
+        </div>
+
+        <div class="sub-container">
+            <div class="side">
+                SIDE
+            </div>
+            <div class="content">
+                CONTENT
+            </div>
+        </div>
+        <div class="footer">
+            FOOTER
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-size: 30px;
+        }
+        .logo {
+            font-size: 6em;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .item {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #3f3f3f;
+            height: 200px;
+            width: 200px;
+            font-size: 3em;
+            border-radius: 10px;
+            text-shadow: 10px black;
+        }
+        .container {
+            display: grid;
+            height: 100vh;
+            grid-template-rows: 2em 5fr 7fr 1em;
+            grid-template-columns: auto;
+        }
+        .header {
+            background-color: skyblue;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        #contact {
+            margin-left: auto;
+        }
+
+        .items {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            grid-template-rows: 1fr 1fr;
+            gap: 20px;
+            background-color: skyblue;
+            justify-content: center;
+            align-items: center;
+            padding: 10px
+        }
+        .footer {
+            background-color: orange;
+            font-size: 0.5em;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            
+        }
+        .route {
+            text-decoration: none;
+            color: white;
+            font-size: 0.5em;
+            padding: 10px;
+            font-family: monospace;
+            font-weight: 600;
+        }
+
+
+        @media (max-width: 600px) {
+            
+            .container {
+                grid-template-rows: 1fr 10em auto 1em;
+            }
+            .header {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .items {
+                display: flex;
+                flex-direction: column;
+            }
+            #contact {
+                margin-left: 0;
+            }
+
+  
+        }
+
+        @media (max-width: 960px) {
+            .items {
+                grid-template-columns: 1fr 1fr;
+                grid-auto-rows: repeat(4, 1fr);
+                
+                justify-items: center;
+                align-items: center;
+            }
+
+        } 
+
+    </style>
+</head>
+<body>
+    
+    <div class="container">
+        <div class="header">
+            <div class="route" >About</div>
+            <div class="route" >Products</div>
+            <div class="route" >Our Team</div>
+            <div class="route" id="contact">Contact</div>
+        </div>
+
+        <div class="logo">
+            🪐
+        </div>
+ 
+        <div class="items">
+            
+            <div class="item">
+                🚙
+            </div>
+            <div class="item">
+                🛻
+            </div>
+            <div class="item">
+                🚲
+            </div>
+            <div class="item">
+                🚝
+            </div>
+            <div class="item">
+                🚎
+            </div>
+            <div class="item">
+                🛩️
+            </div>
+            <div class="item">
+                ⛴️
+            </div>
+            <div class="item">
+                🛰️
+            </div>
+    </div>
+        <div class="footer">
+            footer
+        </div>
+    </div>
+
+</body>
+</html>

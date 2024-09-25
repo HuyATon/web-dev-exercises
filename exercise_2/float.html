@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+        * {
+            font-size: 30px;
+            margin: 0;
+        }
+        
+        .container {
+            height: 100vh;
+        }
+
+        .sub-container {
+            height: 60%;
+        }
+        
+        .header {
+            background: lightblue;
+            height: 20%
+        }
+        
+        .footer {
+            background: coral;
+            height: 20%;
+        }
+        .content {
+            background: lightgreen;
+            height: 50%;
+        }
+
+        .side {
+            background: orange;
+            height: 50%;
+        }
+
+        /* desktop design */
+        @media (min-width: 601px) {
+            .side {
+                float: left;
+                height: 100%;
+                width: 30%;
+            }
+            .content {
+                height: 100%;
+                width: 100%;
+            }
+        }
+
+       
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            HEADER
+        </div>
+
+        <div class="sub-container">
+            <div class="side">
+                SIDE
+            </div>
+            <div class="content">
+                CONTENT
+            </div>
+        </div>
+        <div class="footer">
+            FOOTER
+        </div>
+    </div>
+</body>
+</html>
