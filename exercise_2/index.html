@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bé Tập Tính</title>
+    <link rel="stylesheet" href="./style.css">
+   
+</head>
+<body>
+    <div class="container">
+        <h1>Bé Tập Tính</h1>
+        <br>
+    <div class="grid-container">
+        <div class="grid-item">
+            <label for="firstNumber">Số thứ nhất</label>
+        </div>
+        <div class="grid-item">
+            <input type="text" name="firstNumber" id="firstNumber">
+        </div>
+        <div class="grid-item">
+            <label>
+                <input type="radio" name="operator" id="plus" value="plus">
+                Cộng
+            </label>
+
+            <label>
+                <input type="radio" name="operator" id="minus" value="minus">
+                Trừ
+            </label>
+        </div>
+        <div class="grid-item">
+            <label for="secondNumber">Số thứ hai</label>
+        </div>
+        <div class="grid-item">
+            <input type="text" name="secondNumber" id="secondNumber">
+        </div>
+        <div class="grid-item">
+            <label>
+                <input type="radio" name="operator" id="mul" value="mul">
+                Nhân
+            </label>
+
+            <label for="div">
+                <input type="radio" name="operator" id="div" value="div">
+                Chia
+            </label>
+        </div>
+
+        <div class="grid-item">
+            Kết quả
+        </div>
+        
+        <div id="answer" class="grid-item">
+            
+        </div>
+
+       <div class="grid-item">
+            <button id="calculate-button">Tính</button>
+       </div>
+
+       <div class="grid-item">
+            Thông báo
+        </div>
+
+        <div class="grid-item" id="notification">
+            
+        </div>
+
+    </div>
+    </div>
+
+
+    <script src="./script.js"></script>
+
+</body>
+</html>
