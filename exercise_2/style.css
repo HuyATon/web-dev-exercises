@@ -1,24 +1,44 @@
 * {
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: monospace;
     box-sizing: border-box;
     font-size: 18px;
+    margin: 0;
+    padding: 0;
 }
 .container {
     height: 100vh;
-    width: 100vw;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border: 1px solid red;
+    width: 100%;
 }
 .grid-container {
     display: grid;
-    grid-template-columns: minmax(10em, 14em) 11em 14em;
-    grid-template-rows: repeat(4, 1fr);
-    gap: 1em;
+    grid-template-columns: minmax(10em, 13em) 14em 14em;
+    grid-template-rows: repeat(5, 1fr);
+    gap: 2em;
 }
+
+#app-title {
+    grid-column: 1/4;
+}
+
 
 #answer {
     border: 1px solid gray;
+    border-radius: 5px;
+    width: 100%;
 }
 
+input[type="text"] {
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 5px;
+    width: 100%;
 
+}
 
 #notification {
     grid-column: 2/4;
