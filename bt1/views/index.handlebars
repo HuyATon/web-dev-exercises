@@ -1,0 +1,95 @@
+<div class="container">
+  <div
+    class="mt-5 d-flex flex-column justify-content-center align-items-center"
+  >
+    <form
+      class="card"
+      id="calculation-form"
+      action="/calculation"
+      method="post"
+      style="width: 25rem;"
+    >
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">Calculator</li>
+        {{#if error}}
+          <div class="alert alert-danger m-2" role="alert" id="feedback">
+            {{error}}
+          </div>
+        {{/if}}
+        <li class="list-group-item d-flex flex-column align-items-end">
+
+          <div class="input-group mb-3">
+            <span
+              class="input-group-text bg-secondary-subtle"
+              id="basic-addon1"
+            >X</span>
+            <input
+              type="text"
+              name="x"
+              id="x"
+              required
+              value="{{x}}"
+              class="form-control"
+              placeholder="..."
+              aria-label="Username"
+              aria-describedby="basic-addon1"
+            />
+          </div>
+
+          <div class="input-group mb-3">
+            <span
+              class="input-group-text bg-secondary-subtle"
+              id="basic-addon1"
+            >Y</span>
+            <input
+              type="text"
+              name="y"
+              id="y"
+              value="{{y}}"
+              required
+              class="form-control"
+              placeholder="..."
+              aria-label="Username"
+              aria-describedby="basic-addon1"
+            />
+          </div>
+
+          <div class="input-group mb-3">
+
+            <select
+              name="operator"
+              id="operator"
+              class="custom-select w-100 p-2 rounded border text-center"
+              value="{{y}}"
+            >
+              <option selected value="+">
+                +
+              </option>
+              <option value="-">
+                -
+              </option>
+              <option value="*">
+                *
+              </option>
+              <option value="/">
+                /
+              </option>
+            </select>
+          </div>
+
+          <button
+            class="btn bg-primary w-50 mb-3 text-white bg-primary"
+            id="submit-button"
+          >
+            Calculate
+          </button>
+
+          <h2 id="result" class="border rounded-pill p-3 bg-info text-white">
+            {{result}}
+          </h2>
+
+        </li>
+      </ul>
+    </form>
+  </div>
+</div>
