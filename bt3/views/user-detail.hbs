@@ -1,0 +1,85 @@
+
+<div class="row gx-4">
+
+    {{> side }}
+
+    <div class="col">
+    <div class="border rounded">
+        <h5 class="text-white bg-primary p-3 rounded">User Detail</h5>
+        <div class="row p-3">
+            <div class="col text-center">
+                <h3> {{user.firstName}} {{user.lastName}} </h3>
+                <img src={{user.avatar}} alt="avatar" height="200" class="rounded" />
+                <p>{{user.email}}</p>
+
+                <button class="btn btn-sm btn-danger" id="delete-button"> <strong>X</strong></button>
+            </div>
+
+            <div class="col">
+                <form>
+  <div class="form-group mb-3">
+    <label for="exampleInputEmail1">Email address</label>
+    <input type="email" class="form-control" id="input-email" required value="{{user.email }}">
+  </div>
+  <div class="form-group mb-3">
+    <label for="exampleInputEmail1">First name</label>
+    <input type="text" class="form-control" id="input-first-name" required value="{{user.firstName}}">
+  </div>
+
+<div class="form-group mb-5">
+    <label for="exampleInputEmail1">Last name</label>
+    <input type="text" class="form-control" id="input-last-name" required value="{{user.lastName}}">
+  </div>
+
+  <div class="d-flex flex-row justify-content-between">
+    <div class="w-100">
+        <button id="update-button" type="submit" class="btn btn-primary w-100"> <strong> Update </strong></button>
+    </div>
+   
+  </div>
+</form>
+            </div>
+        </div>
+    </div>
+    </div>
+
+
+</div>
+
+<script>
+    $(() => {
+        $('#delete-button').click(async () => {
+            const res = await fetch(`/users/{{user.id}}`, {
+                method: 'DELETE'
+            });
+
+            if (res.ok) {
+                window.location.href = '/users';
+                alert('User {{user.firstName}} {{user.lastName}} was deleted');
+            } else {
+                alert('Failed to delete user');
+            }
+        })
+
+        $('#update-button').click(async () => {
+            const res = await fetch(`/users/{{user.id}}`, {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    email: $('#input-email').val(),
+                    firstName: $('#input-first-name').val(),
+                    lastName: $('#input-last-name').val()
+                })
+            });
+
+            if (res.ok) {
+                window.location.href = '/users';
+                alert('User {{user.firstName}} {{user.lastName}} was updated');
+            } else {
+                alert('Failed to update user');
+            }
+        })
+    })
+</script>

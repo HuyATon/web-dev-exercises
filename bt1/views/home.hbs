@@ -1,0 +1,98 @@
+<form class="mt-5 d-flex flex-column justify-content-center align-items-center"
+    action="/calculation"
+    method="POST"
+>
+  <div class="card" id="calculation-form" style="width: 25rem;">
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">Calculator</li>
+      {{!-- handlebars conditional rendering --}}
+      {{#if error}}
+        <div class="alert alert-danger m-2" role="alert" id="feedback">
+          {{ error.message }}
+        </div>
+      {{/if}}
+      <li class="list-group-item d-flex flex-column align-items-end">
+
+        <div class="input-group mb-3">
+          <span
+            class="input-group-text bg-secondary-subtle"
+            id="basic-addon1"
+          >X</span>
+          <input
+            type="text"
+            name="x"
+            id="x"
+            required
+            value="{{calculationProblem.x}}"
+            class="form-control"
+            placeholder="..."
+            aria-label="Username"
+            aria-describedby="basic-addon1"
+          />
+        </div>
+
+        <div class="input-group mb-3">
+          <span
+            class="input-group-text bg-secondary-subtle"
+            id="basic-addon1"
+          >Y</span>
+          <input
+            type="text"
+            name="y"
+            id="y"
+            required
+             value="{{calculationProblem.y}}"
+            class="form-control"
+            placeholder="..."
+            aria-label="Username"
+            aria-describedby="basic-addon1"
+          />
+        </div>
+
+        <div class="input-group mb-3">
+
+          <select
+            name="operator"
+            id="operator"
+            class="custom-select w-100 p-2 rounded border text-center"
+            selected="{{calculationProblem.operator}}"
+          >
+            <option value="+" class="operator-option">
+              +
+            </option>
+            <option value="-" class="operator-option">
+              -
+            </option>
+            <option value="*" class="operator-option">
+              *
+            </option>
+            <option value="/" class="operator-option">
+              /
+            </option>
+          </select>
+        </div>
+
+        <button
+          class="btn bg-primary w-50 mb-3 text-white bg-primary"
+          id="submit-button"
+        >
+          Calculate
+        </button>
+
+        <h2 id="result" class="border rounded-pill p-3 bg-info text-white">
+          {{ result }}</h2>
+
+      </li>
+    </ul>
+  </div>
+</form>
+
+<script>
+  $(() => {
+    $('.operator-option').each((index, element) => {
+      if ($(element).val() === '{{calculationProblem.operator}}') {
+        $(element).attr('selected', 'selected')
+      }
+    })
+  })
+</script>

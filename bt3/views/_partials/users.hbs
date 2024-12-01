@@ -1,0 +1,62 @@
+<div class="col col-lg-9">
+  <div class="border rounded">
+    <h5 class="text-white bg-primary p-3 rounded">Main title</h5>
+
+    <div class="p-3">
+      <table class="table table-striped">
+        <thead>
+          <tr class="table-dark">
+            <th scope="col">#</th>
+            <th scope="col">First name</th>
+            <th scope="col">Last name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Avatar</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- for user list -->
+          {{#each users}}
+
+            <tr class="user-row">
+              <th scope="row">{{id}}</th>
+              <td>{{firstName}}</td>
+              <td>{{lastName}}</td>
+              <td>{{email}}</td>
+              <td>
+               <a href="/users/{{id}}" class="user-image">
+                 <img src="{{avatar}}" alt="{{firstName}}" class="rounded w-100 h-100" />
+               </a>
+              </td>
+            </tr>
+
+          {{/each}}
+
+        </tbody>
+      </table>
+
+      <nav aria-label="Page navigation example">
+        <ul class="pagination" id="pagination">
+          {{!  for in total pages }}
+          {{#each pages}}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{this}}"> {{ this }} </a>
+                </li>
+          {{/each}}
+
+        </ul>
+      </nav>
+
+    </div>
+  </div>
+</div>
+
+<script>
+    $(() => {
+        $('.page-item').each((index, item) => {
+            if (item.textContent == {{ page }}) {
+                item.classList.add('active')
+            }
+        })
+
+    })
+</script>
