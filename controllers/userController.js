@@ -1,6 +1,5 @@
 import User from '../models/User.js'
 import userUtils from '../utils/userUtils.js'
-import postgresDB from '../utils/db.js'
 import sha256 from 'js-sha256'
 import AuthError from '../errors/AuthError.js'
 
@@ -21,8 +20,6 @@ export default {
             const {username, password} = req.body
             const hashedPassword = userUtils.generateHashedPassword(password)
             const user = new User(null, username, hashedPassword, "John Doe", "@example.com", new Date().toISOString().split('T')[0], 1)
-            const entity = user.toEntity()
-            const tableName = postgresDB.generateTableName('Users')
 
             const didUserExist = await userUtils.didExist(username)
             if (didUserExist) {
@@ -30,7 +27,7 @@ export default {
                 next(authError)
                 return
             }
-            const result = await postgresDB.add(entity, tableName)
+            const result = user.saveToDB()
             req.session.isLoggedIn = true
             res.redirect('/categories')
         }

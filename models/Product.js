@@ -13,6 +13,7 @@ class Product {
         this.quantity = row.Quantity
     }
 
+    // Database interactions
     static async fetchAllByCategory(categoryID) {
         try {
             const tableName = postgresDatabase.generateTableName("Products")

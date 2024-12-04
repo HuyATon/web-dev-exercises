@@ -1,5 +1,5 @@
 import postgresDatabase from "../utils/db.js"
-
+import categoryUtils from "../utils/categoryUtils.js"
 
 class Category {
     constructor(ID, Name) {
@@ -7,6 +7,8 @@ class Category {
         this.name = Name
     }
 
+
+    // Database interactions
     static async fetchAll() {
         try {
             const result = await postgresDatabase.all("Categories")
@@ -25,13 +27,16 @@ class Category {
         return postgresDatabase.oneByField("CatID", ID, tableName)
     }
 
-    static async add(categoryName) {
+    saveToDB() {
+        try {
 
-    }
-
-    toEntity() {
-        return {
-            "CatName": this.name
+            const tableName = postgresDatabase.generateTableName("Categories")
+            const entity = categoryUtils.toEntity(this)
+            const result = postgresDatabase.add(entity, tableName)
+            return result
+        }
+        catch (error) {
+            throw error
         }
     }
 }

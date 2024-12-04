@@ -1,12 +1,10 @@
 import Category from "../models/Category.js"
 import Product from "../models/Product.js"
-import postgresDatabase from "../utils/db.js"
 
 export default {
 
     renderCategories: async (req, res, next) => {
         if (req.session.isLoggedIn) {
-
             try {
                 const categories = await Category.fetchAll()
                 res.render('categories', {
@@ -46,13 +44,9 @@ export default {
 
     addCategory: async(req, res) => {
         try {
-
             const categoryName = req.body.categoryName
             const category = new Category(null, categoryName)
-            const entity = category.toEntity()
-            const tableName = postgresDatabase.generateTableName("Categories")
-
-            const result = await postgresDatabase.add(entity, tableName)
+            const result = await category.saveToDB()
             res.redirect('/categories')
         }
         catch (error) {

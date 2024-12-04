@@ -1,5 +1,6 @@
 import { config } from 'dotenv'
 import pgPromise from 'pg-promise'
+import postgresDatabase from "../utils/db.js";
 
 config()
 
@@ -15,6 +16,8 @@ class User {
         this.permission = permission
     }
 
+
+    // Database interactions
     toEntity() {
         return {
             "Username": this.username,
@@ -24,6 +27,12 @@ class User {
             "DOB": this.dob,
             "Permission": this.permission
         }
+    }
+
+    saveToDB() {
+        const entity = this.toEntity()
+        const tableName = postgresDatabase.generateTableName("Users")
+        return postgresDatabase.add(entity, tableName)
     }
 
 }
