@@ -52,6 +52,39 @@ class Database {
         }
     }
 
+    async oneByField(field, fieldValue, tableName) {
+        try {
+            const result = await db.oneOrNone(`
+                SELECT * 
+                FROM ${tableName}
+                WHERE "${field}" = $1
+            `, [fieldValue])
+            return result //
+        }
+        catch (error) {
+            throw error
+        }
+    }
+
+    async allByField(field, fieldValue, tableName) {
+        try {
+            const query = `
+            SELECT * FROM ${tableName}
+            WHERE "${field}" = ${fieldValue}
+            `
+            // const result = await db.manyOrNone(`
+            // SELECT *
+            // FROM ${tableName}
+            // WHERE "${field}" = $1
+            // `, [fieldValue])
+            const result = await db.manyOrNone(query)
+            return result
+        }
+        catch (error) {
+            throw error
+        }
+    }
+
 }
 
 const postgresDatabase = new Database(env.DB_SCHEMA, db)

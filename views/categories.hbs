@@ -1,0 +1,35 @@
+<div class="row p-2">
+    <div class="col-3">
+
+        <h5> Danh mục </h5>
+        <div class="list-group">
+            {{#each categories}}
+                <div class="d-flex">
+                    <a href="/categories/{{ this.ID }}" class="list-group-item list-group-item-action" id="category-{{ this.ID }}"> {{ this.name }} </a>
+                </div>
+            {{/each}}
+        </div>
+
+
+        {{> modalButton }}
+
+    <div class="col-9">
+
+        <h5> Sản phẩm </h5>
+
+        {{#each products}}
+            <h6> {{ this.productName }}</h6>
+        {{/each}}
+
+    </div>
+
+    <script>
+
+        $(() => {
+            const url = window.location.pathname
+            const categoryID = url.split('/').pop()
+            const htmlID = `category-${categoryID}`
+            $(`#${htmlID}`).addClass('active')
+        })
+    </script>
+</div>

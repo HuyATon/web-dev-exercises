@@ -1,14 +1,26 @@
 import express from 'express'
 import exphbs from 'express-handlebars'
-import db from './utils/db.js'
+import session from 'express-session'
 
+// routes
 import authRouter from './routes/authRouter.js'
+import categoriesRouter from './routes/categoriesRouter.js'
 
 const app = express()
 const PORT = 3000
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
+
+// session
+app.use(session({
+    resave: false,
+    saveUninitialized: true,
+    secret: 'keyboard cat',
+    cookie: { maxAge: 60000}
+}))
+
+// views
 app.use(express.static(process.cwd() + '/public'))
 app.engine('hbs', exphbs.engine({
     extname: 'hbs',
@@ -27,16 +39,22 @@ app.use((err, req, res, next) => {
 })
 
 // routes
-app.use('/auth', authRouter)
-
 app.get('/', async (req, res) => {
-    res.redirect('/auth/login')
+    if (req.session.isLoggedIn) {
+        res.redirect('/categories')
+    }
+    else {
+        res.redirect('/auth/login')
+    }
 })
 
+app.use('/auth', authRouter)
+app.use('/categories', categoriesRouter)
 
-app.get('/register', (req, res) => {
-    res.render('register')
-})
+
+
+
+
 
 app.listen(PORT, () => {
 

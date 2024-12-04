@@ -1,5 +1,8 @@
 <div style="height: 100vh" class="d-flex flex-column justify-content-center align-items-center">
-    <form class="form-signin w-25 p-4 bg-light rounded border text-center">
+    <form class="form-signin w-25 p-4 bg-light rounded border text-center"
+        action="/auth/login"
+          method="POST"
+    >
   <h1 class="h3 mb-3 font-weight-normal"> Sign In </h1>
   <input
     type="text"
@@ -9,6 +12,7 @@
     required=""
     autofocus=""
     name="username"
+    value="admin"
   />
   <input
     type="password"
@@ -17,10 +21,11 @@
     placeholder="password"
     required=""
     name="password"
+    value="admin"
   />
 
   <button class="btn btn-lg btn-primary btn-block my-4" type="submit"> Sign In </button>
-  <p>Don't have an account? <a href="/register">Register</a></p>
+  <p>Don't have an account? <a href="/auth/register">Register</a></p>
 
 </form>
 </div>
