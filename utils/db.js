@@ -32,7 +32,7 @@ class Database {
 
     async all(table) {
         try {
-            const result = await db.many(`SELECT * FROM ${this.schema}."${table}" `)
+            const result = await db.manyOrNone(`SELECT * FROM ${this.schema}."${table}" `)
             return result
         }
         catch (error) {
@@ -50,6 +50,16 @@ class Database {
         catch (error) {
             throw error
         }
+    }
+
+    async updateOne(data, updateColumns, tableName, condition) {
+        const query = pgp.helpers.update(data, updateColumns, tableName) + `WHERE ${condition} RETURNING * `
+        const result = await db.oneOrNone(query)
+    }
+
+    async delete(tableName, condition) {
+        const query = `DELETE FROM ${tableName} WHERE ${condition}`
+        const result = await db.query(query)
     }
 
     async oneByField(field, fieldValue, tableName) {

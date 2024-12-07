@@ -17,9 +17,10 @@ export default {
 
     register: async (req, res, next) => {
         try {
-            const {username, password} = req.body
+            const {username, password, name, email, dob } = req.body
             const hashedPassword = userUtils.generateHashedPassword(password)
-            const user = new User(null, username, hashedPassword, "John Doe", "@example.com", new Date().toISOString().split('T')[0], 1)
+            const DEFAULT_PERMISSION = 1
+            const user = new User(null, username, hashedPassword, name, email, dob, DEFAULT_PERMISSION)
 
             const didUserExist = await userUtils.didExist(username)
             if (didUserExist) {
@@ -45,8 +46,12 @@ export default {
                 next(notRegisteredError)
                 return
             }
-            const hashedPassword = sha256(password)
-            const storedHashedPassword = storedUser.Password.slice(0, 64)
+           
+            const storedCombinedPassword = storedUser.password
+            const storedHashedPassword = storedCombinedPassword.slice(0, 64)
+            const salt = storedCombinedPassword.slice(64, storedCombinedPassword.length)
+            const hashedPassword = sha256(password + salt)
+
             if (hashedPassword !== storedHashedPassword) {
                 const passwordUnmatchedError = new AuthError('Passwords do not match')
                 next(passwordUnmatchedError)
@@ -54,6 +59,16 @@ export default {
             }
             req.session.isLoggedIn = true
             res.redirect('/categories')
+        }
+        catch (error) {
+            next(error)
+        }
+    },
+
+    logout: async(req, res, next) => {
+        try {
+            await req.session.destroy()
+            res.redirect('/auth/login')
         }
         catch (error) {
             next(error)

@@ -52,5 +52,28 @@ export default {
         catch (error) {
             next(error)
         }
+    },
+
+    updateCategory: async(req, res, next) => {
+        try {
+            const ID = req.params.id
+            const newName = req.body.newCategoryName
+            const result = await Category.updateName(ID, newName)
+            res.status(200).json(result)
+        }
+        catch (error) {
+            next(error)
+        }
+    },
+
+    deleteCategory: async(req, res, next) => {
+        try {
+            const ID = req.params.id
+            const result = await Category.delete(ID)
+            res.status(200).json(result)
+        }
+        catch (error) {
+            next(error)
+        }
     }
 }

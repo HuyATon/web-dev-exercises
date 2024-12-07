@@ -1,0 +1,54 @@
+<!-- Modal -->
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel"> Chỉnh sửa </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                    <input
+                            type="text"
+                            id="category-name-input"
+                            class="form-control mb-3"
+                            placeholder="Danh mục..."
+                            required=""
+                            autofocus=""
+                            name="newCategoryName"
+                    />
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                <button type="submit" id="edit-button" class="btn btn-primary">Xác nhận</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<button type="button" class="btn btn-sm btn-info" data-toggle="modal" data-target="#editModal">
+    Chỉnh sửa
+</button>
+</div>
+
+<script>
+    $(() => {
+        $('#edit-button').on('click', async () => {
+            const url = window.location.pathname
+            const categoryID = url.split('/').pop()
+            const result = await fetch(`/categories/${categoryID}`, {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    newCategoryName: $('#category-name-input').val()
+                })
+            })
+            if (result.ok) {
+                window.location.reload()
+            }
+        })
+    })
+</script>

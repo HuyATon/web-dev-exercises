@@ -7,12 +7,12 @@
     action="/auth/register"
     method="POST"
   >
-    <h1 class="h3 mb-3 font-weight-normal"> Register </h1>
+    <h1 class="h3 mb-3 font-weight-normal"> Đăng Ký </h1>
     <input
       type="text"
       id="username"
       class="form-control mb-3"
-      placeholder="username"
+      placeholder="Tài khoản"
       required=""
       autofocus=""
       name="username"
@@ -20,18 +20,49 @@
     <input
       type="password"
       id="password"
-      class="form-control"
-      placeholder="password"
+      class="form-control mb-3"
+      placeholder="Mật khẩu"
       required=""
       name="password"
+      required
     />
+
+    <input
+      type="text"
+      id="name"
+      class="form-control mb-3"
+      placeholder="Tên người dùng"
+      required=""
+      name="name"
+    />
+
+    <input
+      type="email"
+      id="email"
+      class="form-control mb-3"
+      placeholder="Email"
+      required=""
+      name="email"
+      required
+    />
+
+    <input
+      type="date"
+      id="name"
+      class="form-control mb-3"
+      placeholder="Ngày sinh"
+      required=""
+      name="dob"
+      required
+    />
+
 
     <button
       class="btn btn-lg btn-primary btn-block my-4"
       type="submit"
-    >Register</button>
+    > Đăng Ký</button>
 
-      <p>Already have account? <a href="/auth/login">Login</a></p>
+      <p>Đã có tài khoản? <a href="/auth/login">Đăng nhập</a></p>
 
   </form>
 

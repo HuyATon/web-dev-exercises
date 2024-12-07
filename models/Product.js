@@ -4,8 +4,8 @@ import Category from "./Category.js";
 class Product {
 
     constructor(row) {
-        this.productID = row.ProID
-        this.productName = row.ProName
+        this.id = row.ProID
+        this.name = row.ProName
         this.tinyDes = row.TinyDes
         this.fullDes = row.FullDes
         this.price = row.Price
@@ -21,6 +21,27 @@ class Product {
 
             const products = items.map(row => new Product(row) )
             return products
+        }
+        catch (error) {
+            throw error
+        }
+    }
+
+    static async delete(productID) {
+        try {
+            const tableName = postgresDatabase.generateTableName("Products")
+            const condition = `"ProID" = ${productID}`
+            const result = await postgresDatabase.delete(tableName, condition)
+        }
+        catch (error) {
+            throw error
+        }
+    }
+    static async deleteRelatedOrders(productID) {
+        try {
+            const tableName = postgresDatabase.generateTableName("OrderDetails")
+            const condition = `"ProID" = ${productID}`
+            const result = await postgresDatabase.delete(tableName, condition)
         }
         catch (error) {
             throw error

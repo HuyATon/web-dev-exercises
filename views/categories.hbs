@@ -1,7 +1,9 @@
 <div class="row p-2">
     <div class="col-3">
 
-        <h5> Danh mục </h5>
+        <h5 class="mb-5"> Danh mục </h5>
+
+        {{#if categories}}
         <div class="list-group">
             {{#each categories}}
                 <div class="d-flex">
@@ -9,17 +11,41 @@
                 </div>
             {{/each}}
         </div>
+        {{else}}
+            <p> Không có danh mục nào </p>
+        {{/if}}
+
+        {{> AddButton }}
+
+    <div class="col">
+
+        <div class="d-flex flex-row-reverse mb-3">
+            <button class="btn btn-danger"> 
+                <a href="/auth/logout" class="text-white"> Đăng xuất </a>
+            </button>
+        </div>
+        <div>
+        {{#if category}}
+            <div class="d-flex justify-content-between">
+                <div class="w-75">
+                    <h3> {{ category.name }} </h3>
+                </div>
+
+                <div class="d-flex flex-row-reverse justify-content-between ms-5">
+                    {{> EditButton category=category}}
+                        <button type="button" id='delete-category' class="btn btn-sm btn-danger">
+                             Xoá
+                        </button>
+                </div>
+            </div>
+            
 
 
-        {{> modalButton }}
+        {{> ProductTable products=products}}
 
-    <div class="col-9">
+        {{/if}}
+        </div>
 
-        <h5> Sản phẩm </h5>
-
-        {{#each products}}
-            <h6> {{ this.productName }}</h6>
-        {{/each}}
 
     </div>
 
@@ -30,6 +56,16 @@
             const categoryID = url.split('/').pop()
             const htmlID = `category-${categoryID}`
             $(`#${htmlID}`).addClass('active')
+
+
+            $('#delete-category').on('click', async () => {
+                const result = await fetch(`/categories/${categoryID}`, {
+                    method: 'DELETE'
+                })
+                if (result.ok) {
+                    window.location.href = '/categories'
+                }
+            })
         })
     </script>
 </div>

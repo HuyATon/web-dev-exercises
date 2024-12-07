@@ -1,5 +1,6 @@
 import postgresDB from './db.js'
 import sha256 from "js-sha256";
+import User from '../models/User.js'
 
 const db = postgresDB.db
 
@@ -25,7 +26,12 @@ export default {
                 WHERE "Username" = $1
             `, [username])
 
-            return result
+            if (result === null) {
+                return null
+            }
+
+            const user = new User(result.ID, result.Username, result.Password, result.Name, result.Email, result.DOB, result.Permission)
+            return user
         }
         catch(error) {
             throw error
@@ -35,9 +41,8 @@ export default {
     generateHashedPassword: (rawPassword) => {
 
     const salt = new Date().getTime().toString()
-    const hashedSalt = sha256(salt)
-    const hashedPassword = sha256(rawPassword) + hashedSalt
-    const combinedPassword = hashedPassword + hashedSalt
-    return combinedPassword
+    const combinedPassword = rawPassword + salt
+    const hashedPassword = sha256(combinedPassword) + salt
+    return hashedPassword
 }
 }
