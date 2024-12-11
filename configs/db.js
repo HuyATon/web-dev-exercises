@@ -34,6 +34,14 @@ module.exports = {
             throw error
         }
     },
+    oneById: async (tableNameObj, idColumnName, idValue) => {
+        try {
+            const condition = ` '${idColumnName}' = '${idValue}' `
+            const query = `SELECT * FROM ${tableNameObj} WHERE ${condtion}`
+            return db.oneOrNone(query)
+        }
+        catch (error) { throw error }
+    },
     add: async(entity, tableNameObj, columns = null) => {
          try {
              var query = pgp.helpers.insert(entity, columns, tableNameObj)

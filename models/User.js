@@ -23,5 +23,12 @@ module.exports = {
         catch (error) {
             throw error
         }
+    },
+    one: async(username) => {
+        try {
+            const user = await db.oneById(userTableName, "Username", username)
+            return user
+        }
+        catch (error) { throw error}
     }
 }

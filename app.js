@@ -24,15 +24,37 @@ app.engine('hbs', hbs.engine)
 app.set('view engine', 'hbs')
 app.set('views', process.cwd() + '/views')
 
-
-// Routes
-app.use('/', authR)
-
+// Config passport
+require('./middlewares/ppconfigs')(app)
 
 // Errors handlers
 app.use((err, req, res, next) => {
     res.send(err)
 })
+
+// Routes
+app.use('/', authR)
+
+
+app.get('/', (req, res) => {
+    console.log('foo')
+    res.send('Admin Page')
+})
+
+// Protect routes below this mws
+app.use((req, res, next) => {
+
+    if (!req.isAuthenticated()) {
+        return res.redirect('/login')
+    }
+
+    next()
+})
+
+
+
+
+
 
 app.listen(PORT, () => {
     console.log('App listening at: http://localhost:' + PORT)

@@ -5,14 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ac22554a-7f81-4693-9461-0809fe09184b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/configs/db.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/controllers/userC.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/models/User.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/routes/authR.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/db_utils.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/layouts/main.hbs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/login.hbs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/register.hbs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/middlewares/MyLocalStrategy.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/middlewares/ppconfigs.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/routes/adminR.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/configs/db.js" beforeDir="false" afterPath="$PROJECT_DIR$/configs/db.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/User.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/User.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/authR.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/authR.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,7 +73,7 @@
       <updated>1733276515816</updated>
       <workItem from="1733276516187" duration="13029000" />
       <workItem from="1733884392450" duration="696000" />
-      <workItem from="1733885531963" duration="5874000" />
+      <workItem from="1733885531963" duration="9657000" />
     </task>
     <servers />
   </component>
